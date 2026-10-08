@@ -1,6 +1,6 @@
 # wisp32-watch
 
-Open-source firmware that turns a **Waveshare ESP32-S3-Touch-AMOLED-2.06** into a touch smartwatch with a built-in web dashboard and a voice AI assistant.
+Open-source firmware that turns a **Waveshare ESP32-S3-Touch-AMOLED-2.06** into a touch smart wearable inference device with a built-in web dashboard and a voice AI assistant.
 
 **Project site:** [wisp32-watch.web.app](https://wisp32-watch.web.app)
 
