@@ -1,14 +1,15 @@
 # wisp32-watch
 
-Open-source firmware that turns a **Waveshare ESP32-S3-Touch-AMOLED-2.06** into a touch smart wearable inference device with a built-in web dashboard and a voice AI assistant.
+Open-source firmware that turns a **Waveshare ESP32-S3-Touch-AMOLED-2.06** into a touch smart wearable inference device with a built-in web dashboard and an integrated Gemini real-time voice AI assistant.
 
 **Project site:** [wisp32-watch.web.app](https://wisp32-watch.web.app)
 
 ## What it does
 
-- **Clock** — time and date on the AMOLED screen, synced over WiFi (NTP), with weather for a location you set.
-- **Touch pages on the watch** — Settings, AI Assistant, Translator, Voice Notes, and a QR code that opens the dashboard on your phone.
-- **Voice AI assistant** — talk to the watch and hear it answer. Works with OpenAI (Realtime API) and Google Gemini, using your own API key.
+- **Clock and weather API** — time and date on the AMOLED screen, synced over WiFi (NTP), with weather for a location you set.
+- **Touch pages on the watch** — Settings, AI Assistant, Web Search, Translator, Voice Notes, and a QR code that opens the dashboard on your phone.
+- **Real-Time Voice inference device** — talk to the watch and hear it answer. Works with OpenAI (Realtime API) and Google Gemini, using your own API key.
+- **Local or Remote File Query with Military Grade Encryption** — Query your encrypted local files, remote files on your Wifi Network, Files in your Google Drive
 - **Web dashboard** — the watch runs its own web server. From a browser on the same network you can manage files, a knowledge base, chat history, tasks, contacts, alarms and settings.
 - **Email** — the watch can send email through your own SMTP account.
 - **Encryption** — files on the SD card can be AES-encrypted with a password you choose.
