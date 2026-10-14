@@ -7,8 +7,8 @@
 // SD:       SD_MMC (native ESP32 SDMMC peripheral, 1-bit mode)
 // Touch:    FT3168 cap-touch — double-tap sleep/wake, plus tap and swipe
 //           gestures across the on-device pages (see loop()'s gesture dispatch)
-// Arduino IDE: ESP32S3 Dev Module | OPI PSRAM | 16MB Flash
-//              USB CDC On Boot: Enabled | 16M with spiffs
+// Arduino IDE: Waveshare ESP32-S3-Touch-AMOLED-2.06 | PSRAM: Enabled
+//              USB CDC On Boot: Enabled | 16M Flash (3MB APP/9.9MB FATFS)
 //
 // Ported from waveshare_badge28_touch_only.ino (Waveshare ESP32-S3-Touch-LCD-2.8).
 // KEPT: minimal clock screen (time+date), entire web server

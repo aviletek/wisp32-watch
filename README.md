@@ -43,20 +43,53 @@ Built with the **Arduino IDE** and the ESP32 Arduino core.
 1. Download or clone this repository. The folder must be named `wisp32-watch`.
 2. Open `wisp32-watch.ino` in the Arduino IDE.
 3. Install the libraries listed below.
-4. Select the board settings listed below.
-5. Upload.
+4. Apply the ArduinoWebsockets changes described below.
+5. Select the board settings listed below.
+6. Upload.
 
-**Board settings:** `ESP32S3 Dev Module` · OPI PSRAM · 16MB Flash · Partition scheme `16M` with SPIFFS · USB CDC On Boot: Enabled
+### Board settings
 
-**Libraries to install:**
+In the Arduino IDE, under **Tools**:
 
-- `Arduino_GFX_Library`
+| Setting | Value |
+|---|---|
+| Board | `Waveshare ESP32-S3-Touch-AMOLED-2.06` |
+| PSRAM | Enabled |
+| USB CDC On Boot | Enabled |
+| Partition Scheme | 16M Flash (3MB APP/9.9MB FATFS) |
+
+The board must be the Waveshare entry, not `ESP32S3 Dev Module`. The sketch uses pin names (`TP_SDA`, `SDMMC_CLK`, `AMOLED_PWR_EN` and others) that only the Waveshare board entry defines. It is included in the `esp32` board package by Espressif.
+
+### Libraries
+
+From the Arduino Library Manager:
+
 - `ArduinoJson`
-- `ArduinoWebsockets`
+- `ArduinoWebsockets` (version 0.5.4)
 - `XPowersLib`
-- `Arduino_DriveBus_Library`
+- `GFX Library for Arduino` (this is Arduino_GFX; it provides `Arduino_GFX_Library.h`)
+
+Not in the Library Manager, so install it by hand from GitHub:
+
+- `Arduino_DriveBus` ([Xk-w/Arduino_DriveBus](https://github.com/Xk-w/Arduino_DriveBus))
 
 Everything else (`WiFi`, `HTTPClient`, `WebServer`, `ESPmDNS`, `SD_MMC`, `Preferences`, `ESP_I2S`, `mbedtls`, FreeRTOS) comes with the ESP32 core.
+
+### ArduinoWebsockets changes
+
+The sketch needs a modified copy of ArduinoWebsockets 0.5.4. Without it the build stops with `clearHeaders` not found.
+
+1. Install `ArduinoWebsockets` 0.5.4.
+2. Copy the `src` folder from [`library-patches/ArduinoWebsockets`](library-patches/ArduinoWebsockets) over the `src` folder of the installed library (usually `Documents/Arduino/libraries/ArduinoWebsockets`), replacing five files.
+
+What the modified files change:
+
+- `clearHeaders()` is added, so headers from one AI provider are not sent to another.
+- A custom header with an empty value is not sent.
+- Large messages are read completely instead of being cut off.
+- The connection timeout is 8 seconds instead of 1.
+- Secure connections do not verify the server's certificate when no certificate is supplied.
+- The server's status line is printed to the serial port when connecting.
 
 **Already included in this repository:**
 
@@ -83,5 +116,6 @@ Third-party code included here keeps its own license:
 - `qrcodegen.c` / `qrcodegen.h` — MIT, © Project Nayuki
 - `es8311.c` / `es8311.h` / `es8311_reg.h` — Apache-2.0, © Espressif Systems
 - `es7210_mini.c` / `es7210_mini.h` — written for this project; register map and start-up sequence derived from Espressif Systems' ES7210 driver (Apache-2.0)
+- `library-patches/ArduinoWebsockets` — modified files from ArduinoWebsockets 0.5.4, GPL-3.0, © Gil Maimon
 
-Thank you to Espressif Systems and Project Nayuki for their work.
+Thank you to Espressif Systems, Project Nayuki and Gil Maimon for their work.
